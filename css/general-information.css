@@ -1,0 +1,183 @@
+.header {
+    font-family: sans-serif;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    width: 230px;
+    height: 215px;
+    border-radius: 30% 70% 61% 39% / 35% 38% 62% 65%;
+    object-fit: cover;
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.name-section {
+    width: 100%;
+    border-bottom: solid;
+    height: 67px;
+}
+
+.name {
+    padding-left: 28px;
+    font-size: 70px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.highlighted-name {
+    color: #FFBB64;
+}
+
+.subheading {
+    font-size: 22px;
+    color: #9BB8CD;
+    margin-top: -4px;
+    opacity: 0.5;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.section-title {
+    transition: all 0.5s ease; /* Animates the changes over 0.5 seconds smoothly */
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFB534;
+}
+
+.contact-details {
+    padding-left: 15px;
+    padding-top: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.icon {
+    width: 26px;
+    opacity: 0.5;
+    padding-right: 10px;
+}
+
+.personal-info {
+    padding-left: 10px;
+    /* Additional styles for personal info content */
+}
+
+.navigation-buttons {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-container {
+    transition: all 0.5s ease;
+    z-index: 1;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 16px;
+    width: 313px;
+    cursor: pointer;
+}
+.section-container:hover {
+    border-radius: 30px;
+    background-color: #FFCF81;
+    z-index: 2; /* Increases z-index to bring the element to the front */
+    transform: scale(1.05);
+}
+.section-container:hover .section-title {
+    font-size: 30px; /* Makes the text bold on hover */
+    transform: scale(1.05);
+    color: #9BB8CD;
+}
+.avatar-container {
+    position: relative;
+    width: fit-content;
+}
+.avatar-container img.sticker {
+    position: absolute;
+    top: 0; /* adjust these values as needed */
+    left: 0; /* adjust these values as needed */
+    width: 215px; /* or any size, smaller than the first image for effect */
+    height: auto;
+    transition: filter 0.3s ease; /* Smooth transition for the blur effect */
+    cursor: pointer;
+}
+.sticker:hover {
+    z-index: 5; /* Increases z-index to bring the element to the front */
+}
+.body-container {
+    font-family: 'Gill Sans', sans-serif;
+    padding: 25px;
+}
+.img-hometown {
+    display:none;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 27px;
+    transition: opacity 2s ease, visibility 0s 1s; /* Transition for opacity and delay visibility to sync with opacity */
+    opacity: 1; /* Image is fully visible initially */
+    visibility: visible;
+}
+.img-hometown.hide {
+    opacity: 0; /* Image becomes fully transparent */
+    display: none;
+}
+.hometown-map {
+    margin-top: 30px;
+}
+.highlight {
+    width: 30%;
+    border: solid;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.highlight:hover {
+    background-color: #FFB534;
+    color: white;
+}
+.active {
+    background-color: #FFB534;
+    color: white; 
+}
+.video-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+.video {
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.handle-bar {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+#controlable {
+    display:none;
+}
+#uncontrolable {
+    display:none;
+}

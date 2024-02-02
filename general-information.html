@@ -5,34 +5,154 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/general-information.css"> 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hometown = document.querySelector('.section-title.hometown');
+            const videoControl = document.querySelector('.section-title.controlable');
+            const videoUncontrol = document.querySelector('.section-title.uncontrolable');
+            const image = document.querySelector('.img-hometown');
+            const controlableVideo = document.getElementById('controlable');
+            const uncontrolableVideo = document.getElementById('uncontrolable');
+        
+            hometown.addEventListener('click', function() {
+                controlableVideo.style.display = "none";
+                videoControl.classList.remove('active');
+                uncontrolableVideo.style.display = "none";
+                videoUncontrol.classList.remove('active');
+
+                hometown.classList.add('active');
+                // Toggle image display for hometown map
+                if (image.style.display === "none" || !image.style.display) {
+                    image.style.display = "block";
+                    image.style.opacity = "1";
+                } else {
+                    image.style.opacity = "0";
+                    setTimeout(() => { image.style.display = "none"; }, 500);
+                    hometown.classList.remove('active');
+                }
+            });
+        
+            videoControl.addEventListener('click', function() {
+                image.style.opacity = "0";
+                setTimeout(() => { image.style.display = "none"; }, 500);
+                hometown.classList.remove('active');
+                uncontrolableVideo.style.display = "none";
+                videoUncontrol.classList.remove('active');
+                // Toggle visibility for controlable video
+                if (controlableVideo.style.display === "none" || !controlableVideo.style.display) {
+                    controlableVideo.style.display = "block";
+                    videoControl.classList.add('active');
+                } else {
+                    controlableVideo.style.display = "none";
+                    videoControl.classList.remove('active');
+                }
+            });
+        
+            videoUncontrol.addEventListener('click', function() {
+                image.style.opacity = "0";
+                setTimeout(() => { image.style.display = "none"; }, 500);
+                hometown.classList.remove('active');
+                controlableVideo.style.display = "none";
+                videoControl.classList.remove('active');
+                // Toggle visibility for uncontrolable video
+                if (uncontrolableVideo.style.display === "none" || !uncontrolableVideo.style.display) {
+                    uncontrolableVideo.style.display = "block";
+                    videoUncontrol.classList.add('active');
+                } else {
+                    uncontrolableVideo.style.display = "none";
+                    videoUncontrol.classList.remove('active');
+                }
+            });
+        });
+        </script>
+        
 </head>
 <body>
 
-<!-- Page 1 -->
-<h1>About Me</h1>
-<div id="page1" style="display: flex">
-    <img src="image/avatar.jpg" style="width: 200px; border-radius: 50px;">
-    <div style="padding-left: 10px;">    
-        <p>Welcome to my journey! I'm a passionate individual with a love for learning and exploring new horizons.</p>
-        <p>I will let you know some information about me</p>
-        <ul>
-            <li>Name: Ho Hoang Huy</li>
-            <li>Age: 19</li>
-            <li>Height: 1m78</li>
-            <li>Weight: 88kg</li>
-            <li>Skin: Medium rare :))</li>
-            <li>Relationship: Dating</li>
-            <li>Hometown: Binh Duong</li>
-        </ul>
-        <p>If you want to know more please go the the next page</p>
+<div class="header">
+    <div class="avatar-container">
+        <img src="image/avatar.jpg" class="avatar">
+        <img class="sticker" title="Go to my social account" src="image/sticker.webp" onclick="window.open('https://www.facebook.com/Huyiuvy.1926', '_blank');">
     </div>
-
-
+    <div class="name-section">
+        <div class="name">
+           <span> HoHoang<span class="highlighted-name">Hvy</span></span>
+           <span class="subheading">General information about myself</span>
+        </div>
+    </div>
 </div>
-<div style="padding-top: 10px; display: flex; justify-content: space-between;">
+<div class="body-container">
+    <div id="page1" class="info-grid">
+        <div class="section-container">
+            <span class="section-title">Contact</span>
+            <div class="contact-details">
+                <span class="contact-item"><img src="svg/chat-dots-svgrepo-com.svg" class="icon"> <span>huyhohoang1907@gmail.com</span></span>
+                <span class="contact-item"><img src="svg/call-dropped-rounded-svgrepo-com.svg" class="icon"> <span>0398168226</span></span>
+                <span class="contact-item"><img src="svg/map-point-add-svgrepo-com.svg" class="icon"> <span>Binh Duong, Viet Nam</span></span>
+            </div>
+        </div>
+        <div class="section-container">    
+            <span class="section-title">General Information</span>
+            <ul>
+                <li>Age: 19</li>
+                <li>Height: 1m78</li>
+                <li>Weight: 88kg</li>
+                <li>Skin: Medium rare :))</li>
+                <li>Relationship: Dating</li>
+                <li>Hometown: Binh Duong</li>
+            </ul>
+        </div>
+        <div class="section-container" onclick="location.href='hobby-information.html'">    
+            <span class="section-title">My hoppy</span>
+            <ul>
+                <li>Gym</li>
+                <li>Swimming</li>
+                <li>Badminton</li>
+                <li>Learning new thing</li>
+            </ul>
+        </div>
+        <div class="section-container" onclick="location.href='study-information.html'">    
+            <span class="section-title">Studying</span>
+            <ul>
+                <li>2nd year student of UIT</li>
+                <li>Major: IS (Information System)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="handle-bar">
+        <div class="section-title highlight hometown" title="See my hometown map">My hometown map</div>
+        <div class="section-title highlight controlable">Video with Controls</div>
+        <div class="section-title highlight uncontrolable">Video without Controls</div>
+    </div>
+    <div class="hometown-map">
+        <div>
+            <img src="image\hometown-map.png" class="img-hometown" usemap="#image-map">
+    
+            <map name="image-map">
+                <area target="_blank" alt="Ben Cat (My hometown)" title="Ben Cat (My hometown)" href="" coords="460,153,133" shape="circle">
+                <area target="_blank" alt="Thu Dau Mot" title="Thu Dau Mot" href="" coords="533,421,136" shape="circle">
+                <area target="_blank" alt="Tan Uyen" title="Tan Uyen" href="" coords="780,278,131" shape="circle">
+            </map>
+        
+        </div>
+    </div>
+    <div class="video-container">
+        <video class="video" id="controlable" src="video\videofunny.mp4" controls>
+            Your browser does not support the video tag.
+        </video>
+        <video class="video" id="uncontrolable" src="video\videofunny.mp4" autoplay loop muted>
+            Your browser does not support the video tag.
+          </video>
+    </div>
+</div>
+
+<div class="navigation-buttons">
     <button onclick="location.href='index.html'">Return to home page</button>
     <button onclick="location.href='study-information.html'">Next</button>
-
 </div>
 
 </body>
