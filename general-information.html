@@ -9,20 +9,218 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general-information.css"> 
+    <style>
+        .header {
+            font-family: sans-serif;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 230px;
+            height: 215px;
+            border-radius: 30% 70% 61% 39% / 35% 38% 62% 65%;
+            object-fit: cover;
+            box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .name-section {
+            width: 100%;
+            border-bottom: solid;
+            height: 67px;
+        }
+
+        .name {
+            padding-left: 28px;
+            font-size: 70px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .highlighted-name {
+            color: #FFBB64;
+        }
+
+        .subheading {
+            font-size: 22px;
+            color: #9BB8CD;
+            margin-top: -4px;
+            opacity: 0.5;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .section-title {
+            transition: all 0.5s ease; /* Animates the changes over 0.5 seconds smoothly */
+            font-size: 22px;
+            font-weight: bold;
+            color: #FFB534;
+        }
+
+        .contact-details {
+            padding-left: 15px;
+            padding-top: 13px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .icon {
+            width: 26px;
+            opacity: 0.5;
+            padding-right: 10px;
+        }
+
+        .personal-info {
+            padding-left: 10px;
+            /* Additional styles for personal info content */
+        }
+
+        .navigation-buttons {
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .section-container {
+            transition: all 0.5s ease;
+            z-index: 1;
+            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 16px;
+            width: 313px;
+            cursor: pointer;
+        }
+        .section-container:hover {
+            border-radius: 30px;
+            background-color: #FFCF81;
+            z-index: 2; /* Increases z-index to bring the element to the front */
+            transform: scale(1.05);
+        }
+        .section-container:hover .section-title {
+            font-size: 30px; /* Makes the text bold on hover */
+            transform: scale(1.05);
+            color: #9BB8CD;
+        }
+        .avatar-container {
+            position: relative;
+            width: fit-content;
+        }
+        .avatar-container img.sticker {
+            position: absolute;
+            top: 0; /* adjust these values as needed */
+            left: 0; /* adjust these values as needed */
+            width: 215px; /* or any size, smaller than the first image for effect */
+            height: auto;
+            transition: filter 0.3s ease; /* Smooth transition for the blur effect */
+            cursor: pointer;
+        }
+        .sticker:hover {
+            z-index: 5; /* Increases z-index to bring the element to the front */
+        }
+        .body-container {
+            font-family: 'Gill Sans', sans-serif;
+            padding: 25px;
+        }
+        .img-hometown {
+            display:none;
+            width: 100%;
+            border-radius: 20px;
+            margin-top: 27px;
+            transition: opacity 2s ease, visibility 0s 1s; /* Transition for opacity and delay visibility to sync with opacity */
+            opacity: 1; /* Image is fully visible initially */
+            visibility: visible;
+            cursor: pointer
+        }
+        .img-hometown.hide {
+            opacity: 0; /* Image becomes fully transparent */
+            display: none;
+        }
+        .hometown-map {
+            margin-top: 30px;
+        }
+        .highlight {
+            width: 30%;
+            border: solid;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .highlight:hover {
+            background-color: #FFB534;
+            color: white;
+        }
+        .active {
+            background-color: #FFB534;
+            color: white; 
+        }
+        .video-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;}
+        .video {
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .handle-bar {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
+        #controlable {
+            display:none;
+        }
+        #uncontrolable {
+            display:none;
+        }
+        .image-object {
+            display: none;
+        }
+        .image-3-object {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const hometown = document.querySelector('.section-title.hometown');
             const videoControl = document.querySelector('.section-title.controlable');
             const videoUncontrol = document.querySelector('.section-title.uncontrolable');
             const image = document.querySelector('.img-hometown');
+            const image2 = document.querySelector('.image-object');
             const controlableVideo = document.getElementById('controlable');
             const uncontrolableVideo = document.getElementById('uncontrolable');
+            const image3Object = document.querySelector('.image3Object');
         
             hometown.addEventListener('click', function() {
                 controlableVideo.style.display = "none";
                 videoControl.classList.remove('active');
                 uncontrolableVideo.style.display = "none";
                 videoUncontrol.classList.remove('active');
+                image2.style.opacity = "0";
+                setTimeout(() => { image2.style.display = "none"; }, 500);
+                image3Object.classList.remove('active');
 
                 hometown.classList.add('active');
                 // Toggle image display for hometown map
@@ -42,6 +240,10 @@
                 hometown.classList.remove('active');
                 uncontrolableVideo.style.display = "none";
                 videoUncontrol.classList.remove('active');
+                image2.style.opacity = "0";
+                setTimeout(() => { image2.style.display = "none"; }, 500);
+                image3Object.classList.remove('active');
+
                 // Toggle visibility for controlable video
                 if (controlableVideo.style.display === "none" || !controlableVideo.style.display) {
                     controlableVideo.style.display = "block";
@@ -58,6 +260,10 @@
                 hometown.classList.remove('active');
                 controlableVideo.style.display = "none";
                 videoControl.classList.remove('active');
+                image2.style.opacity = "0";
+                setTimeout(() => { image2.style.display = "none"; }, 500);
+                image3Object.classList.remove('active');
+
                 // Toggle visibility for uncontrolable video
                 if (uncontrolableVideo.style.display === "none" || !uncontrolableVideo.style.display) {
                     uncontrolableVideo.style.display = "block";
@@ -65,6 +271,26 @@
                 } else {
                     uncontrolableVideo.style.display = "none";
                     videoUncontrol.classList.remove('active');
+                }
+            });
+            image3Object.addEventListener('click', function() {
+                image.style.opacity = "0";
+                setTimeout(() => { image.style.display = "none"; }, 500);
+                hometown.classList.remove('active');
+                controlableVideo.style.display = "none";
+                videoControl.classList.remove('active');
+                uncontrolableVideo.style.display = "none";
+                videoUncontrol.classList.remove('active');
+
+                image3Object.classList.add('active');
+                // Toggle image display for hometown map
+                if (image2.style.display === "none" || !image2.style.display) {
+                    image2.style.display = "block";
+                    image2.style.opacity = "1";
+                } else {
+                    image2.style.opacity = "0";
+                    setTimeout(() => { image2.style.display = "none"; }, 500);
+                    image3Object.classList.remove('active');
                 }
             });
         });
@@ -127,17 +353,25 @@
         <div class="section-title highlight hometown" title="See my hometown map">My hometown map</div>
         <div class="section-title highlight controlable">Video with Controls</div>
         <div class="section-title highlight uncontrolable">Video without Controls</div>
+        <div class="section-title highlight image3Object">Image 3 object</div>
     </div>
     <div class="hometown-map">
         <div>
-            <img src="image\hometown-map.png" class="img-hometown" usemap="#image-map">
+            <img src="image\my-hometown.png" class="img-hometown" onclick="window.open('https://vi.wikipedia.org/wiki/B%E1%BA%BFn_C%C3%A1t#:~:text=Qu%E1%BA%ADn%20B%E1%BA%BFn%20C%C3%A1t%20thu%E1%BB%99c%20t%E1%BB%89nh,h%C3%A0nh%20Quy%E1%BA%BFt%20%C4%91%E1%BB%8Bnh%2055%2DCP.', '_blank');">
+        </div>
+    </div>
+    <div class="image-3-object">
+        <div>
+            <img src="image\three-object-map.jpg" class="image-object" usemap="#image-map">
     
             <map name="image-map">
-                <area target="_blank" alt="Ben Cat (My hometown)" title="Ben Cat (My hometown)" href="https://vi.wikipedia.org/wiki/B%E1%BA%BFn_C%C3%A1t#:~:text=Qu%E1%BA%ADn%20B%E1%BA%BFn%20C%C3%A1t%20thu%E1%BB%99c%20t%E1%BB%89nh,h%C3%A0nh%20Quy%E1%BA%BFt%20%C4%91%E1%BB%8Bnh%2055%2DCP." coords="460,153,133" shape="circle">
-                <area target="_blank" alt="Thu Dau Mot" title="Thu Dau Mot" href="https://vi.wikipedia.org/wiki/Th%E1%BB%A7_D%E1%BA%A7u_M%E1%BB%99t" coords="533,421,136" shape="circle">
-                <area target="_blank" alt="Tan Uyen" title="Tan Uyen" href="https://vi.wikipedia.org/wiki/T%C3%A2n_Uy%C3%AAn_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)" coords="780,278,131" shape="circle">
+                <area target="_blank" alt="Macbook" title="Macbook" href="https://www.thegioididong.com/laptop-apple-macbook" coords="0,387,13,391,21,396,32,404,47,410,82,426,99,437,111,436,121,431,134,406,168,335,281,88,281,78,260,62,201,35,152,14,142,9,142,1,0,-1,0,263,-1,279" shape="poly">
+                <area target="_blank" alt="Apple Watch" title="Apple Watch" href="" coords="71,480,85,477,100,475,114,472,122,474,128,476,138,479,170,476,193,476,206,467,214,468,237,468,256,469,267,475,288,478,470,478,478,485,478,496,478,502,468,508,446,510,270,510,259,522,230,523,212,522,188,511,195,511,138,509,118,512,107,515,90,510,67,508,59,492,62,486" shape="poly">
+                <area target="_blank" alt="Airpod" title="Airpod" href="" coords="163,409,175,394,202,403,211,409,232,419,250,424,254,441,229,449,211,443,193,433,171,424,169,419,163,415" shape="poly">
+                <area target="_blank" alt="Iphone" title="Iphone" href="" coords="183,365,225,279,405,370,364,453" shape="poly">
+                <area target="_blank" alt="Charger" title="Charger" href="" coords="232,258,298,123,384,166,320,304" shape="poly">
+                <area target="" alt="Charge Wire" title="Charge Wire" href="" coords="443,273,87" shape="circle">
             </map>
-        
         </div>
     </div>
     <div class="video-container">
